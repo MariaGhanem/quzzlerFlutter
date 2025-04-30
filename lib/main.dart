@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:quzzler/questionsList.dart';
 
+QuestionBank questionTool= QuestionBank();
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -12,21 +13,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String tex= checkTest[0].qus;
+  String tex= questionTool.checkTest[0].qus;
   int count=0;
   List <Icon> displayIcons=[];
   TextButton button(String texx, Color col) {
     return TextButton(
       onPressed: () {
         setState(() {
-            if((checkTest[count].ans== true && texx =='YES') ||
-                (checkTest[count].ans== false && texx =='NO')) {
+            if((questionTool.checkTest[count].ans== true && texx =='YES') ||
+                (questionTool.checkTest[count].ans== false && texx =='NO')) {
               displayIcons.add(checkIcon(Icons.check, Colors.green));
             }else{
               displayIcons.add(checkIcon(Icons.close, Colors.red));
             }
-            count=Random().nextInt(checkTest.length);
-          tex = checkTest[count].qus;
+            count=Random().nextInt(questionTool.checkTest.length);
+          tex = questionTool.checkTest[count].qus;
         });
       },
       child: Container(
